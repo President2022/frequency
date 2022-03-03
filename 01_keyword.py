@@ -1,13 +1,29 @@
-# 첫 번재 row에 있는 댓글(LSM.csv 참고)
-comment = "링크  :안철수 "尹 개념 없어"‥'유사시 일본 들어올수도' 尹 발언 비판 (naver.com)그려 우리가 니 밭도 갈아주고 있는데"
+# re 호출하여 split 소환
+# pandas에서 to_csv() 소환
+import re
+import pandas as pd
 
-# comment 문자열 나누기(띄어쓰기 기준)
+# csv파일 불러오기
+df1 = open('ACS_v2.txt', 'r', encoding='UTF8')
+df_comment = df1.readline()
 
-# split을 사용해보니, 띄어쓰기뿐 아니라 '('로도 나눠야됨 (추후 반영 예정)
+# 불러온 df_comment 문자열로 변환 
+comment_string = str(df_comment)
+
+# ',' 기준으로 keyword 구분하기
+df2 = open('ACS_keyword.txt', 'r', encoding='UTF8')
+df_keyword = df2.readline()
+
+# 불러온 df_keyword = 문자열로 변환
+keyword_string = str(df_keyword)
+kywrd_str_split = re.split('\,', keyword_string)
 
 # keyword랑 같으면 +1, 없으면 카운팅하지 않기(LSM_tfidf.csv 참고)
 comment_KeyValue = {}
-if '개념' in comment:
-    comment_KeyValue['개념'] = comment.count('개념')
+for i in kywrd_str_split:
+    if i in comment_string:
+        comment_KeyValue[i] = comment_string.count(i)
 
-print(comment_KeyValue)
+# csv 파일로 저장
+dataframe = pd.DataFrame(comment_KeyValue, index=[0])
+dataframe.to_csv("C:/Users/82105/Desktop/PythonWorkSpace/President2022", header=False, index=False)
