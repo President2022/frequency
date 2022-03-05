@@ -18,10 +18,8 @@ characters = "ㅋㅠ은는이가으로을를와의에께서에서에서에게"
 ## 1번 방법(replace 사용)
 for x in range(len(characters)):
     comment_string = comment_string.replace(characters[x],"")
-
 ## 2번 방법(join 사용)
 # comment_string = ''.join( x for x in comment_string if x not in characters)
-
 ## 3번 방법(sub 사용)
 # comment_string = re.sub("\ㅋ|\ㅠ|\은|\는|\이|\가|\으로|\을|\를|\와|\의|\에|\께서|\에서|\에게|\대표", "", comment_string)
 
