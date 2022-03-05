@@ -12,7 +12,7 @@ df_comment = df1.readline()
 # 불러온 df_comment 문자열로 변환 
 comment_string = str(df_comment)
 
-## df_comment에 'ㅋ'과 'ㅠ' 제거하기
+## df_comment에 'ㅋ'과 'ㅠ'와 '기타 조사' 제거하기
 characters = "ㅋㅠ은는이가으로을를와의에께서에서에서에게"
 
 ## 1번 방법(replace 사용)
